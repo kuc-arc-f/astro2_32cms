@@ -1,0 +1,25 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import type { Post } from '../index.astro';
+import App from './App.svelte';
+//
+const { id } = Astro.params;
+console.log("id=", id);
+//let item: any = await LibCrud.get(Number(id));
+//console.log(item);
+---
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <main class="container">
+        <App client:only="svelte" id={id} />
+    </main>
+</Layout>
+
+<!--
+<button id="btn_save" class="btn btn-primary">Save</button>
+<hr />
+ -->
