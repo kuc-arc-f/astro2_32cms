@@ -1,9 +1,10 @@
 <script lang="ts">
 import ModalComplete from '../../../../components/ModalComplete.svelte';
 import CrudCreate from '../CrudCreate';
+import CategoryCrudIndex from '../../category/CrudIndex';
 //
 export let siteId; 
-let messageModal = "";
+let messageModal = "", categoryItems = [];
 console.log("siteId=", siteId);
 /**
  *
@@ -18,9 +19,11 @@ const initProc = async function () {
             disableScroll: true,
             awaitOpenAnimation: true,
             awaitCloseAnimation: true
-        });        
+        });
+        categoryItems = await CategoryCrudIndex.getList(siteId);  
+console.log(categoryItems);      
     } catch (e) {
-    console.error(e);
+        console.error(e);
     }
 }
 initProc();
@@ -56,6 +59,17 @@ const okFunction = function () {
     <h1>Create</h1>
     <p>siteId : {siteId}</p>
     <hr class="my-1" />
+    <div class="col-sm-6">Category
+    <select id="category" name="category" class="form-control">
+        <option value="0">Select please</option>
+        {#each categoryItems as item}
+            <option value={item.id}>{item.name}</option>
+        {/each}
+    </select>
+    
+    </div>
+    <hr class="my-1" />
+
     <div class="col-sm-6">
         <label for="title">Title</label>
         <input type="text" id="title" name="title"

@@ -1,4 +1,3 @@
-//import LibCrud from '../../lib/LibCrud';
 import Crud from './Crud';
 import LibConfig from '../../../lib/LibConfig';
 import HttpCommon from '../../../lib/HttpCommon';
@@ -61,7 +60,7 @@ const CrudEdit = {
       let ret = false;
       let values = Crud.getInputValues();  
       values.id = Number(id);
-      values.categoryId = 0;
+//      values.categoryId = 0;
 console.log(values);
       const json = await HttpCommon.server_post(values, '/posts/update');
       console.log(json);

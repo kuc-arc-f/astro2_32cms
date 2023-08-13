@@ -19,7 +19,6 @@ const CrudCreate = {
       let values = Crud.getInputValues();
       values.userId = LibAuth.getUserId();
       values.siteId = siteId;
-      values.categoryId = 0;
 //console.log(values);
       const json = await HttpCommon.server_post(values, '/posts/create');
 console.log(json);

@@ -36,16 +36,16 @@ const Crud = {
   {
     try{
       const data: any = {};
-  
+
+      const category = (<HTMLInputElement>document.querySelector("#category")).value;
+      data.categoryId = Number(category);
+
       // inputタグから値を取得し、オブジェクトにセットする
       const title = (<HTMLInputElement>document.querySelector("#title")).value;
       data.title = title;
       
       const content = (<HTMLInputElement>document.querySelector("#content")).value;
       data.content = content;
-   
-//      const completed = (<HTMLInputElement>document.querySelector("#completed")).checked;
-//      data.completed = completed ? 1 : 0;  
       return data;
     } catch (e) {
       console.error(e);

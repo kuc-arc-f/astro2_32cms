@@ -1,11 +1,13 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import ModalComplete from '../../../components/ModalComplete.svelte';
 import CrudEdit from './CrudEdit';
 import Crud from './Crud';
+import CategoryCrudIndex from '../category/CrudIndex';
 //
 //export let id: number = 0;
 let id: number = 0, siteId = 0;
-let item = {title: "", content: ""};
+let item = {title: "", content: ""}, categoryItems = [];
 let messageModal = "";
 //
 //console.log("id=", id);
@@ -24,16 +26,27 @@ const initProc = async function () {
             awaitCloseAnimation: true
         });        
         const params = Crud.getQueryString();
-console.log(params);
         item = await CrudEdit.get(Number(params.id));
         id = params.id;
         siteId = params.siteId;
 console.log(item);
+        categoryItems = await CategoryCrudIndex.getList(siteId);  
+        //console.log(categoryItems);   
+        const category = (<HTMLInputElement>document.querySelector("#category"));
+        if(category) {
+            setTimeout(() => {
+                category.value = String(item.categoryId);
+            }, 500);            
+        }
+
     } catch (e) {
         console.error(e);
     }
 }
-initProc();
+//
+onMount(async () => {
+    await initProc();
+});
 /**
  *
  * @param
@@ -86,6 +99,14 @@ const okFunction = function () {
 	<h1>Edit</h1>    
     ID: {id}
     <hr class="my-1" />
+    <div class="col-sm-6">Category
+        <select id="category" name="category" class="form-control">
+            <option value="0">Select please</option>
+            {#each categoryItems as item}
+                <option value={item.id}>{item.name}</option>
+            {/each}
+        </select>
+    </div>    
 	<div class="col-sm-6">
 		<label>Name:</label>
         <input type="text" name="title" id="title" class="form-control"
