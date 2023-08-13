@@ -32,6 +32,8 @@ startProc();
         <span>
             {LibCommon.converDateString(item.createdAt)},
             ID : {item.id}
+            <a href={`/admin/category/edit?id=${item.id}&siteId=${siteId}`} class="btn btn-sm btn-outline-primary mx-2">Edit
+            </a>            
         </span>
         <hr class="my-2" />
     </div>

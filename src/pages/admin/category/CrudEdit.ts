@@ -5,6 +5,27 @@ import HttpCommon from '../../../lib/HttpCommon';
 //
 const CrudEdit = {
   /**
+   *
+   * @param key: any
+   *
+   * @return
+   */    
+  get: async function(id: number) : Promise<any>
+  {
+    try {
+      let ret = {}
+      const postItem = {
+        id: id,
+      }		
+      const json = await HttpCommon.server_post(postItem, "/category/get");
+console.log(json);
+      ret = json.data; 
+      return ret; 
+    } catch (e) {
+      console.error(e);
+    }
+  },  
+  /**
    * delete:
    * @param key: any
    *
@@ -18,7 +39,7 @@ const CrudEdit = {
         id: id
       }
 //console.log(item);
-      const json = await HttpCommon.server_post(item, '/todos/delete');
+      const json = await HttpCommon.server_post(item, '/category/delete');
 //console.log(json);
       if (json.ret ===  LibConfig.OK_CODE) {
         ret = true;
@@ -34,16 +55,14 @@ const CrudEdit = {
    *
    * @return
    */
-  update : async function() : Promise<any>
+  update : async function(id: number) : Promise<any>
   {
     try{
       let ret = false;
-      const elm: any = document.querySelector('#item_id');
-      const id = elm?.value;  
       let values = Crud.getInputValues();  
       values.id = Number(id);
   console.log(values);
-      const json = await HttpCommon.server_post(values, '/todos/update');
+      const json = await HttpCommon.server_post(values, '/category/update');
       console.log(json);
       if (json.ret ===  LibConfig.OK_CODE) {
         ret = true;
@@ -77,6 +96,6 @@ const CrudEdit = {
   } 
 }
 //
-CrudEdit.startProc();
+//CrudEdit.startProc();
 
 export default CrudEdit;
