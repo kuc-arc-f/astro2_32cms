@@ -1,13 +1,14 @@
 <script lang="ts">
-import ModalComplete from '../../../../components/ModalComplete.svelte';
-import CrudEdit from '../CrudEdit';
-//import CrudShow from '../CrudShow';
+import ModalComplete from '../../../components/ModalComplete.svelte';
+import CrudEdit from './CrudEdit';
+import Crud from './Crud';
 //
-export let id: number = 0;
+//export let id: number = 0;
+let id: number = 0, siteId = 0;
 let item = {title: "", content: ""};
 let messageModal = "";
 //
-console.log("id=", id);
+//console.log("id=", id);
 /**
  *
  * @param
@@ -22,7 +23,11 @@ const initProc = async function () {
             awaitOpenAnimation: true,
             awaitCloseAnimation: true
         });        
-        item = await CrudEdit.get(Number(id));
+        const params = Crud.getQueryString();
+console.log(params);
+        item = await CrudEdit.get(Number(params.id));
+        id = params.id;
+        siteId = params.siteId;
 console.log(item);
     } catch (e) {
         console.error(e);
@@ -62,7 +67,7 @@ console.log("#test1");
         const result = await CrudEdit.delete(Number(id));
 console.log("result=", result);
         if(result === true) {
-            messageModal = "Success, delete todo";
+            messageModal = "Success, delete";
             MicroModal.show('modal-1');
         }
     } catch (e) {
@@ -71,16 +76,16 @@ console.log("result=", result);
 }
 //
 const okFunction = function () {
-//    alert("okFunction");
-    //window.location.href = '/todo';
+    window.location.href = `/admin/posts/${siteId}`;
 }
 </script>
 
 <div class="mb-4">
-	<a href={`/admin/posts/${id}`} class="btn">[ Back ]
+	<a href={`/admin/posts/${siteId}`} class="btn btn-outline-primary">Back
 	</a>		
 	<h1>Edit</h1>    
     ID: {id}
+    <hr class="my-1" />
 	<div class="col-sm-6">
 		<label>Name:</label>
         <input type="text" name="title" id="title" class="form-control"

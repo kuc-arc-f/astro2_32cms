@@ -1,5 +1,5 @@
 ---
-import Layout from '../../../../layouts/Layout.astro';
+import Layout from '../../../../layouts/LayoutAdmin.astro';
 import App from './App.svelte';
 //import CrudCreate from '../CrudCreate';
 const { id } = Astro.params;
@@ -8,16 +8,14 @@ console.log("id=", id);
 
 <Layout title="Welcome to Astro.">
     <main class="container mb-4">
-        <a class="btn btn-outline-primary" href={`/todo`}>Back</a>
-        <hr />
          <App client:only="svelte" siteId={id}  />
     </main>
 </Layout>
 <!-- -->
 <style>
-.completed_box_wrap{ display: none; }
 </style>
-<!-- -->
 
 <!--
+        <a class="btn btn-outline-primary" href={`/todo`}>Back</a>
+        <hr />
  -->

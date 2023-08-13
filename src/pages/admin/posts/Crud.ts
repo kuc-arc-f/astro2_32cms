@@ -2,6 +2,31 @@
 
 const Crud = {
   /**
+  * 
+  * @param
+  *
+  * @return
+  */    
+  getQueryString: function () {
+    try{
+      let ret: any = {id: 0, siteId: 0};
+      const queryString = window.location.search;
+
+      // URLSearchParamsを使用してクエリ文字列をパース
+      const params = new URLSearchParams(queryString);
+    
+      // クエリ文字列から特定のパラメータを取得
+      const id = params.get('id');
+      const siteId = params.get('siteId');  
+      ret.id = Number(id);    
+      ret.siteId = Number(siteId);    
+      return ret;
+    } catch (e) {
+      console.error(e);
+      throw new Error('Error , getQueryString');
+    }
+  },
+  /**
    * 
    * @param key: any
    *

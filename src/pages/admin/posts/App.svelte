@@ -40,12 +40,12 @@ const parentUpdateList = async function(page: number) {
     <hr class="my-1" />	
     {#each items as item}
     <div>
-        <a href={`/todo/show/${item.id}`} ><h3>{item.title}</h3>
+        <a href={``} ><h3>{item.title}</h3>
         </a>    
         <span>
             {LibCommon.converDateString(item.createdAt)},
             ID : {item.id}
-            <a href={`/admin/posts/edit/${item.id}`} class="btn btn-sm btn-outline-primary mx-2">Edit
+            <a href={`/admin/posts/edit?id=${item.id}&siteId=${siteId}`} class="btn btn-sm btn-outline-primary mx-2">Edit
             </a>			
         </span>
         <hr class="my-2" />

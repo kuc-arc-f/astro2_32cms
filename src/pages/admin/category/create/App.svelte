@@ -85,7 +85,7 @@ const okFunction = function () {
 </script>
 <!-- MarkUp -->
 <div class="container my-2">
-	<a href={`/admin/sites/`} class="btn">[ Back ]
+	<a href={`/admin/category/${siteId}`} class="btn">[ Back ]
 	</a>		
 	<h1>Category Create</h1>
 	<hr />

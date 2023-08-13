@@ -12,12 +12,12 @@ const { title } = Astro.props;
 	<Header title={title} />
 	<body>
 		<!-- Header -->
-		<div class="text-center my-2">
+		<div class="text-center mt-2">
 			<a href={`/`}>[ Top ]</a>
 			&nbsp;<a href={`/admin`}>[ Admin ]</a>
 			&nbsp;<a href={`/admin/sites/`}>[ Sites ]</a>
 			&nbsp;<a href={`/login`}>[ Login ]</a>
-			<hr />
+			<hr class="my-1" />
 		</div>		
 		<slot />
 	</body>
