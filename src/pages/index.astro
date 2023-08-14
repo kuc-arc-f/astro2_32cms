@@ -4,6 +4,8 @@ import Card from '../components/Card.astro';
 import HttpCommon from '../lib/HttpCommon';
 import LibCommon from "../lib/LibCommon";
 import CrudShow from "./admin/sites/CrudShow";
+import TopHeadBox from './TopHeadBox.svelte';
+import IndexRow from './IndexRow.svelte';
 const PUBLIC_SITE_ID = import.meta.env.PUBLIC_SITE_ID;
 const PUBLIC_SYSTEM_NAME = import.meta.env.PUBLIC_SYSTEM_NAME;
 console.log("sid=" ,PUBLIC_SITE_ID)
@@ -25,20 +27,15 @@ const site = jsonSites.data;
 ---
 
 <Layout title={PUBLIC_SYSTEM_NAME}>
+    <TopHeadBox site_name={PUBLIC_SYSTEM_NAME} info_text={""} />
     <div class="container mb-4">
+
         <h1>{site.name}</h1>
         <hr />
         {
         items.map((item) => (
-        <div>
-            <a href={`/posts/${item.id}`}  class=""
-            ><h3>{item.title}</h3>
-            </a>
-            <span class="mx-2">ID : {item.id}, {LibCommon.converDateString(item.createdAt)} 
-			</span>
-			{item.CategoryName ? <span> [ {item.CategoryName} ]</span> : ""}
-            <hr class="my-1" />					
-        </div>
+            <IndexRow id={item.id}  title={item.title} 
+            date={LibCommon.converDateString(item.createdAt)} category={item.CategoryName}  />
         ))
         }
     </div>
@@ -48,5 +45,13 @@ const site = jsonSites.data;
 </style>
 
 <!--
-		<h3>astro2_30dev</h3>
+<div>
+    <a href={`/posts/${item.id}`}  class=""
+    ><h3>{item.title}</h3>
+    </a>
+    <span class="mx-2">ID : {item.id}, {LibCommon.converDateString(item.createdAt)} 
+    </span>
+    {item.CategoryName ? <span> [ {item.CategoryName} ]</span> : ""}
+    <hr class="my-1" />					
+</div>
 -->
