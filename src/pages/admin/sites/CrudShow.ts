@@ -1,9 +1,33 @@
-import LibCrud from '../../../lib/LibCrud';
+//import LibCrud from '../../../lib/LibCrud';
 import LibConfig from '../../../lib/LibConfig';
 import HttpCommon from '../../../lib/HttpCommon';
 import { marked } from 'marked';
 //
 const Crud = {
+  /**
+   *:
+   * @param key: any
+   *
+   * @return
+   */  
+  get : async function(id: number) : Promise<any>
+  {
+    try{
+      let ret = false;
+      const postItem = {
+        id: id
+      }
+//console.log(item);
+      const json = await HttpCommon.server_post(postItem, '/sites/get');
+console.log(json);
+      let item: any = {};
+      item = json.data;
+console.log(item)
+      return item;      
+    } catch (e) {
+      console.error(e);
+    }
+  },  
   /**
    * delete:
    * @param key: any
@@ -48,22 +72,12 @@ console.log(md);
       const contentElem = (<HTMLInputElement>document.querySelector("#post_item"));
       contentElem.innerHTML = content;
 console.log("id=", id);
-/*
-      const button: any = document.querySelector('#btn_delete');
-      button.addEventListener('click', async () => {
-        const res = await this.delete(Number(id));
-console.log(res);
-        if(res) {
-          window.location.href = '/todo';	
-        }
-      }); 
-*/
     } catch (e) {
       console.error(e);
     }    
   } 
 }
 //
-Crud.startProc();
+//Crud.startProc();
 
 export default Crud;

@@ -1,6 +1,7 @@
 <script lang="ts">
 //import PaginateBox from "./PaginateBox.svelte";
 import CrudIndex from "./CrudIndex";
+//import CrudShow from "./CrudShow";
 import LibCommon from "../../../lib/LibCommon";
 let items = [], itemsTodos = [], completeType = 0;
 let itemPage = 1, itemsAll = [], perPage: number = 10;
@@ -8,7 +9,8 @@ let itemPage = 1, itemsAll = [], perPage: number = 10;
 
 const startProc= async function() {
     items = await CrudIndex.getList();
-console.log(items);
+//    const d = await CrudShow.get(7);
+//console.log(d);
 }
 startProc();
 </script>
