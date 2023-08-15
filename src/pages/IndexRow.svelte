@@ -15,9 +15,11 @@ export let id ,date, title, category;
           <i class="bi bi-clipboard"></i>
         </div>
         <div class="card_col_body  p-md-2">
-          <a href={`/posts/${id}`} >
-            <h3>{title}</h3></a>
-            {date}, ID : {id}, {category}        
+          <a href={`/posts/${id}`} ><h3>{title}</h3>
+          </a>
+          {date}, ID : {id}
+          {#if category} [ {category} ]
+          {/if} 
         </div>
         <div class="py-2  py-md-3 px-4 ms-auto text-center">
           <a href={`/posts/${id}`} class="btn btn-secondary btnx-cyan" >

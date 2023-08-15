@@ -27,17 +27,14 @@ const site = jsonSites.data;
 ---
 
 <Layout title={PUBLIC_SYSTEM_NAME}>
-    <TopHeadBox site_name={PUBLIC_SYSTEM_NAME} info_text={""} />
-    <div class="container mb-4">
-
-        <h1>{site.name}</h1>
-        <hr />
-        {
-        items.map((item) => (
-            <IndexRow id={item.id}  title={item.title} 
-            date={LibCommon.converDateString(item.createdAt)} category={item.CategoryName}  />
-        ))
-        }
+    <TopHeadBox site_name={site.name} info_text={""} />
+    <div class="container mt-2 mb-4">
+    {
+    items.map((item) => (
+        <IndexRow id={item.id}  title={item.title} 
+        date={LibCommon.converDateString(item.createdAt)} category={item.CategoryName}  />
+    ))
+    }
     </div>
 </Layout>
 
@@ -46,12 +43,6 @@ const site = jsonSites.data;
 
 <!--
 <div>
-    <a href={`/posts/${item.id}`}  class=""
-    ><h3>{item.title}</h3>
-    </a>
-    <span class="mx-2">ID : {item.id}, {LibCommon.converDateString(item.createdAt)} 
-    </span>
-    {item.CategoryName ? <span> [ {item.CategoryName} ]</span> : ""}
-    <hr class="my-1" />					
+        <h1>{site.name}</h1>
 </div>
 -->
