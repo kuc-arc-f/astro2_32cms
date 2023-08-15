@@ -31,6 +31,10 @@ PUBLIC_API_URL=http://localhost:8787
 PUBLIC_API_KEY="hoge123"
 
 ```
+***
+### Setup doc
+
+* https://zenn.dev/knaka0209/scraps/c57b01b24dfca2
 
 ***
 ### Start
